@@ -1,9 +1,9 @@
-export function Header() {
+import { FC } from "react";
+
+export const Header: FC<any> = ({ children }) => {
   return (
-    <div className="w-full p-6 flex flex-row-reverse border border-zinc-800 border-b-zinc-500">
-      <button className="btn bg-blue-600 text-white px-3 py-2 rounded-md hover:bg-blue-700">
-        Create
-      </button>
+    <div className="w-full p-6 flex justify-end border border-zinc-800 border-b-zinc-500">
+      {children}
     </div>
   );
-}
+};
