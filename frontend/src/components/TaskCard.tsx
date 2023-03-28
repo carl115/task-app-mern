@@ -72,7 +72,12 @@ export const TaskCard: FC<any> = ({ taskData }) => {
       }`}
     >
       <form onSubmit={handleSubmit}>
-        <div className="w-full flex justify-end">
+        <div
+          className={`w-full flex ${
+            isUpdate ? "justify-between" : "justify-end"
+          }`}
+        >
+          {isUpdate ? <h3>Editing...</h3> : ""}
           <div className="mb-2 text-xl flex items-center justify-around">
             <button
               type="button"
