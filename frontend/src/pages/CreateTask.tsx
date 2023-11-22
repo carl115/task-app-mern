@@ -3,6 +3,7 @@ import axios from "axios";
 import { CreateRequestTask } from "../types";
 import { TypeAlert } from "../enums";
 import { setAlert } from "../helpers/alerts.js";
+import { localCreateTask } from '../helpers/localstorage'
 
 export function CreateTask() {
   const [title, setTitle] = useState("");
@@ -16,9 +17,12 @@ export function CreateTask() {
       body,
     };
 
+    /*
     await axios
       .post("http://localhost:3000/api/tasks/", newTask)
-      .then((res) => setAlert(TypeAlert.Success, res.data.message));
+      .then((res) => setAlert(TypeAlert.Success, res.data.message))
+    */
+    await localCreateTask(newTask).then(res => setAlert(TypeAlert.Success, res.message));
 
     setTitle("");
     setBody("");
