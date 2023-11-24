@@ -5,6 +5,7 @@ import { TypeAlert } from "../enums";
 import axios from "axios";
 import swal from "sweetalert2";
 import { setAlert } from "../helpers/alerts";
+import { localUpdateTask, localDeleteTask } from "../helpers/localstorage";
 
 export const TaskCard: FC<any> = ({ taskData }) => {
   const [isUpdate, setIsUpdate] = useState(false);
@@ -23,9 +24,12 @@ export const TaskCard: FC<any> = ({ taskData }) => {
 
     setIsUpdate(false);
 
+    /*
     await axios
       .put(`http://localhost:3000/api/tasks/${taskData._id}`, submitTask)
       .then((res) => setAlert(TypeAlert.Success, res.data.message));
+    */
+    await localUpdateTask(taskData.id, submitTask).then(res => setAlert(TypeAlert.Success, res.message));
   };
 
   const deleteTask = async () => {
@@ -38,9 +42,12 @@ export const TaskCard: FC<any> = ({ taskData }) => {
       })
       .then((result) => {
         if (result.isConfirmed) {
+          /*
           axios
             .delete(`http://localhost:3000/api/tasks/${taskData._id}`)
             .then((res) => console.log(res));
+          */
+          localDeleteTask(taskData.id);
 
           setAlert(TypeAlert.Success, "Task deleted successfully");
         }
@@ -68,7 +75,7 @@ export const TaskCard: FC<any> = ({ taskData }) => {
   return (
     <div
       className={`w-80 p-4 pt-2 text-white border border-white rounded-md ${
-        check && !isUpdate ? "opacity-40" : "opacity-100"
+        check && !isUpdate ? "opacity-60" : "opacity-100"
       }`}
     >
       <form onSubmit={handleSubmit}>
