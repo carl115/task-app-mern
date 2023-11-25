@@ -74,66 +74,76 @@ export const TaskCard: FC<any> = ({ taskData }) => {
 
   return (
     <div
-      className={`w-80 p-4 pt-2 text-white border border-white rounded-md ${
+      className={`bg-zinc-700 h-fit p-4 pt-1 text-white border-4 border-blue-600 ${
         check && !isUpdate ? "opacity-60" : "opacity-100"
       }`}
     >
       <form onSubmit={handleSubmit}>
         <div
-          className={`w-full flex ${
+          className={`w-full flex items-center ${
             isUpdate ? "justify-between" : "justify-end"
           }`}
         >
           {isUpdate ? <h3>Editing...</h3> : ""}
-          <div className="mb-2 text-xl flex items-center justify-around">
+          <div className="mb-2 flex items-center justify-between">
+            {!isUpdate ? (
+              <button
+                type="button"
+                className="text-white text-[22px] pt-1 mr-1 hover:text-blue-600"
+                title="Edit"
+                onClick={() =>
+                  !isUpdate ? setIsUpdate(true) : setIsUpdate(false)
+                }
+              >
+                <IonIcon name="create"></IonIcon>
+              </button>
+            ) : (
+              <button 
+                type="button" 
+                className="text-white text-[26px] pt-1 mr-1 hover:text-blue-600"
+                onClick={() =>
+                  !isUpdate ? setIsUpdate(true) : setIsUpdate(false)
+                }
+              >
+                <IonIcon name="close"></IonIcon>
+              </button>
+            )}
             <button
               type="button"
-              className="text-sky-600 mx-1"
-              title="Edit"
-              onClick={() =>
-                !isUpdate ? setIsUpdate(true) : setIsUpdate(false)
-              }
-            >
-              <IonIcon name="create"></IonIcon>
-            </button>
-            <button
-              type="button"
-              className="text-red-600 mx-1"
+              className="text-white text-[22px] pt-1 mr-2 hover:text-red-600"
               title="Delete"
               onClick={deleteTask}
             >
-              <IonIcon name="trash"></IonIcon>
+              <IonIcon name="remove-circle-outline"></IonIcon>
             </button>
             {!isUpdate && (
               <input
                 type="checkbox"
-                className="w-4 h-4 mx-1"
+                className="w-[18px] h-[18px] mr-2"
                 checked={check}
                 onChange={handleChangeCheckBox}
               />
             )}
-            <button type="submit" className="ml-1" title="Save">
+            <button type="submit" className="text-white pt-1 text-[20px] hover:text-blue-600" title="Save">
               <IonIcon name="save"></IonIcon>
             </button>
           </div>
         </div>
-        <div>
-          {!isUpdate ? (
-            <h1 className="pb-2 text-4xl border border-zinc-800 border-b-white">
-              {title}
-            </h1>
+        {!isUpdate ? (
+          <h1 className="pb-2 text-4xl border-b border-zinc-800 border-b-white">
+            {title}
+          </h1>
           ) : (
-            <input
-              type="text"
-              value={title}
-              className="bg-transparent w-full mb-2 h-auto text-4xl border border-zinc-600"
-              onChange={handleChangeTitle}
-            />
-          )}
-        </div>
+          <input
+            type="text"
+            value={title}
+            className="bg-transparent w-full mb-2 h-auto text-4xl border border-zinc-600"
+            onChange={handleChangeTitle}
+          />
+        )}
         <div>
           {!isUpdate ? (
-            <p className="text-lg">{body}</p>
+            <p style={{overflowWrap: 'anywhere'}} className="text-lg">{body}</p>
           ) : (
             <textarea
               className="bg-transparent w-full text-lg border border-zinc-600 resize-none"

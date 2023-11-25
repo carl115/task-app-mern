@@ -22,7 +22,7 @@ export const App: FC<any> = () => {
           </Link>
         </div>
       </Header>
-      <div className="h-full flex justify-center items-center">
+      <div className="w-full h-full">
         <Outlet />
       </div>
     </div>

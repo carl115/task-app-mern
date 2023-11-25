@@ -23,18 +23,16 @@ export function Tasks() {
   }, []);
 
   return (
-    <div
-      className={`${tasks.length > 10 ? "h-[700px]" : ""} ${
-        tasks.length > 0
-          ? "grid grid-cols-4 gap-10 overflow-x-hidden overflow-y-auto"
-          : ""
-      }`}
-    >
-      {tasks.length == 0 ? (
-        <h1 className="text-4xl text-white">There are not tasks yet</h1>
-      ) : (
-        tasks.map((task: LocalTask) => <TaskCard key={task.id} taskData={task}></TaskCard>)
-      )}
+    <div className="w-full h-full py-4 flex justify-center">
+      <div
+        className="bg-zinc-800 w-[600px] h-[85%] p-7 flex flex-col gap-4 overflow-y-auto overflow-x-hidden"
+      >
+        {tasks.length == 0 ? (
+          <h1 className="text-4xl text-white">There are not tasks yet</h1>
+        ) : (
+          tasks.map((task: LocalTask) => <TaskCard key={task.id} taskData={task}></TaskCard>)
+        )}
+      </div>
     </div>
   );
 }
