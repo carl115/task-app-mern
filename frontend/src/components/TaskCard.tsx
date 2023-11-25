@@ -87,20 +87,19 @@ export const TaskCard: FC<any> = ({ taskData }) => {
           {isUpdate ? <h3>Editing...</h3> : ""}
           <div className="mb-2 flex items-center justify-between">
             {!isUpdate ? (
-              <button
-                type="button"
-                className="text-white text-[22px] pt-1 mr-1 hover:text-blue-600"
-                title="Edit"
-                onClick={() =>
+              <button 
+                type="button" 
+                className="text-white text-[21px] pt-1 mr-1 hover:text-blue-600" 
+                onClick={() => 
                   !isUpdate ? setIsUpdate(true) : setIsUpdate(false)
                 }
               >
-                <IonIcon name="create"></IonIcon>
+                <IonIcon name="pencil-outline"></IonIcon>
               </button>
             ) : (
               <button 
                 type="button" 
-                className="text-white text-[26px] pt-1 mr-1 hover:text-blue-600"
+                className="text-white text-[30px] pt-2 hover:text-blue-600"
                 onClick={() =>
                   !isUpdate ? setIsUpdate(true) : setIsUpdate(false)
                 }
@@ -108,14 +107,15 @@ export const TaskCard: FC<any> = ({ taskData }) => {
                 <IonIcon name="close"></IonIcon>
               </button>
             )}
-            <button
-              type="button"
-              className="text-white text-[22px] pt-1 mr-2 hover:text-red-600"
-              title="Delete"
-              onClick={deleteTask}
-            >
-              <IonIcon name="remove-circle-outline"></IonIcon>
-            </button>
+            {!isUpdate && (
+              <button 
+                type="button"
+                className="text-[21px] pt-1 mr-1 hover:text-red-600" 
+                onClick={deleteTask}
+              >
+                <IonIcon name="trash-outline"></IonIcon>
+              </button>
+            )}
             {!isUpdate && (
               <input
                 type="checkbox"
