@@ -23,7 +23,7 @@ export const localCreateTask = async (newTask: CreateRequestTask) => {
 
 export const localUpdateTask = async (id: any, task: Task) => {
     const localData = localStorage.getItem("tasks");
-    let tasks:LocalTask[] = JSON.parse(localData);
+    let tasks:LocalTask[] = localData ? JSON.parse(localData) : [];
     let taskFilter = tasks.filter((task: LocalTask) => task.id != id)
     
     taskFilter.push({...task, id});
@@ -32,8 +32,8 @@ export const localUpdateTask = async (id: any, task: Task) => {
 }
 
 export const localDeleteTask = async (id: any) => {
-    const localData:LocalTask[] = localStorage.getItem("tasks");
-    const tasks = JSON.parse(localData);
+    const localData = localStorage.getItem("tasks");
+    const tasks = localData ? JSON.parse(localData) : [];
     let tasksFilter = tasks.filter((task: LocalTask) => task.id != id);
     await localStorage.setItem("tasks", JSON.stringify(tasksFilter));
 }
