@@ -28,12 +28,16 @@ export const localUpdateTask = async (id: any, task: Task) => {
     
     taskFilter.push({...task, id});
     await localStorage.setItem("tasks", JSON.stringify(taskFilter));
+
     return { message: 'Task updated succefully' };
 }
 
 export const localDeleteTask = async (id: any) => {
     const localData = localStorage.getItem("tasks");
-    const tasks = localData ? JSON.parse(localData) : [];
+    let tasks:LocalTask[] = localData ? JSON.parse(localData) : [];
     let tasksFilter = tasks.filter((task: LocalTask) => task.id != id);
+
     await localStorage.setItem("tasks", JSON.stringify(tasksFilter));
+
+    return { message: 'Task deleted succefully' };
 }

@@ -4,9 +4,9 @@ import IonIcon from "@reacticons/ionicons";
 import { Header } from "./layouts/Header";
 
 export const App: FC<any> = () => {
-  const [openMenu, setOpenMenu] = useState(false)
+  const [openMenu, setOpenMenu] = useState<Boolean>(false)
   return (
-    <div className="bg-[url('./assets/background-image.jpg')] bg-cover h-screen overflow-hidden">
+    <div className="bg-[url('imgs/background-image.jpg')] bg-cover h-screen overflow-hidden">
       <div className={`bg-slate-800/80 backdrop-blur-md pl-10 pr-5 pt-3 h-screen ${openMenu ? 'absolute' : 'hidden'} right-0 z-50`}>
         <div className="w-full text-white text-4xl text-right mb-10">
           <button type="button" onClick={() => setOpenMenu(false)}>

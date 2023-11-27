@@ -47,9 +47,7 @@ export const TaskCard: FC<any> = ({ taskData }) => {
             .delete(`http://localhost:3000/api/tasks/${taskData._id}`)
             .then((res) => console.log(res));
           */
-          localDeleteTask(taskData.id);
-
-          setAlert(TypeAlert.Success, "Task deleted successfully");
+          localDeleteTask(taskData.id).then(res => setAlert(TypeAlert.Success, res.message));
         }
       });
   };

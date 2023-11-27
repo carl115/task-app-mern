@@ -7,17 +7,23 @@ import IonIcon from '@reacticons/ionicons'
 export function Tasks() {
   //const [tasks, setTasks] = useState<Task[]>([]);
   const [tasks, setTasks] = useState<LocalTask[]>([]);
+  const [load, setLoad] = useState<Boolean>(false);
 
   useEffect(() => {
+    setLoad(true);
     /*
     axios
     .get("http://localhost:3000/api/tasks")
-    .then((res) => setTasks(res.data))
+    .then(res => {
+      setTasks(res.data);
+      setLoad(false);
+    });
     */
     const interval = setInterval(() => {
       const data = localStorage.getItem('tasks');
       if(data) {
         setTasks(JSON.parse(data));
+        setLoad(false);
       }
     }, 1000);
     return () => clearInterval(interval);
@@ -30,7 +36,7 @@ export function Tasks() {
       >
         {tasks.length == 0 ? (
           <div className="w-full h-full text-5xl text-white flex justify-center items-center">
-            <IonIcon className="animate-spin" name="reload"></IonIcon>
+            { load ? (<IonIcon className="animate-spin" name="reload"></IonIcon>) : (<h1 className="text-blue-500 text-4xl">There are not tasks yet</h1>) }
           </div>
         ) : (
           tasks.map((task: LocalTask) => <TaskCard key={task.id} taskData={task}></TaskCard>)
