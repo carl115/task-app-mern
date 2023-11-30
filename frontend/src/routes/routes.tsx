@@ -1,9 +1,9 @@
-import { createBrowserRouter, createHashRouter } from "react-router-dom";
+import { createBrowserRouter } from "react-router-dom";
 import { App } from "../App";
 import { CreateTask } from "../pages/CreateTask";
 import { Tasks } from "../pages/Tasks";
 
-export const routes = createHashRouter([
+export const routes = createBrowserRouter([
   {
     element: <App />,
     children: [
@@ -12,7 +12,7 @@ export const routes = createHashRouter([
         element: <Tasks />,
       },
       {
-        path: "/create",
+        path: "create",
         element: <CreateTask />,
       },
     ],

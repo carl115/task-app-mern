@@ -37,13 +37,13 @@ export function CreateTask() {
   };
 
   return (
-    <div className="w-full h-full flex justify-center items-center">
+    <div className="w-full h-full flex justify-center sm:py-4 overflow-y-auto">
       <form
         onSubmit={handleSubmit}
-        className="bg-zinc-700 w-full h-full p-4 flex flex-col rounded-sm sm:w-80 sm:h-fit"
+        className="bg-zinc-700 w-full h-full py-4 px-7 flex flex-col rounded-sm sm:w-80 sm:h-[85%] sm:justify-around"
       >
-        <h2 className="text-white mt-5 text-3xl mb-5 sm:mt-0">Create a task</h2>
-        <div className="rounded-md mb-5 mt-5 sm:mt-0">
+        <h2 className="text-white mt-6 text-3xl sm:mt-0">Create a task</h2>
+        <div className="rounded-md mt-6 sm:mt-0">
           <input
             type="text"
             name="title"
@@ -55,13 +55,13 @@ export function CreateTask() {
         </div>
         <textarea
           name="body"
-          className="block bg-zinc-500 w-full h-40 mb-5 mt-5 sm:mt-0 rounded-md border-0 p-1.5 text-white text-md resize-none placeholder:text-gray-400"
+          className="block bg-zinc-500 w-full h-60 mt-6 sm:mt-0 rounded-md border-0 p-1.5 text-white text-md resize-none placeholder:text-gray-400"
           placeholder="Body"
           value={body}
           onChange={handleChangeBody}
         ></textarea>
         <button
-          className="btn bg-blue-600 text-white px-3 py-2 mt-5 sm:mt-0 rounded-md hover:bg-blue-700"
+          className="btn bg-blue-600 text-white px-3 py-2 mt-6 sm:mt-0 rounded-md hover:bg-blue-700"
           type="submit"
         >Crear</button>
       </form>

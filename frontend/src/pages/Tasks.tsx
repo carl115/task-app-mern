@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { LocalTask, Task } from "../types";
 import { TaskCard } from "../components/TaskCard";
+import { App } from '../App'
 import IonIcon from '@reacticons/ionicons'
 
 export function Tasks() {
@@ -36,8 +37,11 @@ export function Tasks() {
       >
         {tasks.length == 0 ? (
           <div className="w-full h-full text-5xl text-white flex justify-center items-center">
-            { load ? (<IonIcon className="animate-spin" name="reload"></IonIcon>) : (<h1 className="text-blue-500 text-4xl">There are not tasks yet</h1>) }
-          </div>
+          { load ? 
+            (<IonIcon className="animate-spin" name="reload"></IonIcon>) : 
+              (<h1 className="text-blue-500 text-4xl">There are not tasks yet</h1>)
+          }
+        </div>
         ) : (
           tasks.map((task: LocalTask) => <TaskCard key={task.id} taskData={task}></TaskCard>)
         )}
